@@ -8,6 +8,8 @@ const setupGame = () => {
     bars = [];
     valueText = null;
     resultText = null;
+    middleValueText = null;
+    middleStatusText = null;
 
     constructor() {
       super('GameScene');
@@ -39,6 +41,12 @@ const setupGame = () => {
 
       this.valueText?.destroy(true);
       this.valueText = null;
+
+      this.middleValueText?.destroy(true);
+      this.middleValueText = null;
+
+      this.middleStatusText?.destroy(true);
+      this.middleStatusText = null;
 
       this.resultText?.destroy(true);
       this.resultText = null;
@@ -96,15 +104,18 @@ const setupGame = () => {
       this.bars.map((bar) => {
         console.log(bar.barNoteText);
         bar.barNoteText?.destroy(true);
+        bar.rect.setFillStyle(0xffffff, 1);
+        bar.valueText.setColor('#fff');
+        bar.indexText.setColor('#fff');
       });
     }
 
     drawBarNote(index, text, color) {
       const bar = this.bars[index];
       const { x, y, rect, indexText, valueText } = bar;
-      // rect.setFillStyle(color, 1);
-      // indexText.setTint(hexColor);
-      // valueText.setTint(hexColor);
+      rect.setFillStyle(`0x${color.slice(1)}`, 1);
+      indexText.setColor(color);
+      valueText.setColor(color);
       const barNoteText = this.add.text(x + 13, y + 40, text, {
         color,
         fontSize: 12,
@@ -116,6 +127,12 @@ const setupGame = () => {
       bar.barNoteText = barNoteText;
     }
 
+    drawBarRange(start, end) {
+      for (let i = start; i <= end; i++) {
+        this.drawBarNote(i, '', '#ff0000');
+      }
+    }
+
     delay(ms) {
       return new Promise((resolve) => setTimeout(resolve, ms));
     }
@@ -125,15 +142,40 @@ const setupGame = () => {
       let end = this.values.length - 1;
       while (start <= end) {
         this.clearBarNote();
-        this.drawBarNote(start, 'Start', '#fff');
-        this.drawBarNote(end, 'End', '#fff');
+        this.drawBarRange(start, end);
 
         let middle = Math.floor((start + end) / 2);
-        this.drawBarNote(middle, 'Middle', '#fff');
+        this.drawBarNote(middle, 'Middle', '#00ff00');
+        this.middleValueText?.destroy(true);
+        this.middleValueText = this.add.text(
+          50,
+          70,
+          `Middle value: ${this.values[middle]}`,
+          {
+            color: '#fff',
+            fontSize: 12,
+          }
+        );
+        this.middleStatusText?.destroy(true);
+        this.middleStatusText = this.add.text(
+          50,
+          90,
+          `${
+            this.values[middle] < this.value
+              ? 'Middle < value'
+              : this.values[middle] > this.value
+              ? 'Middle > value'
+              : 'Middle = value'
+          }`,
+          {
+            color: '#fff',
+            fontSize: 12,
+          }
+        );
 
         if (this.values[middle] === this.value) {
           this.clearBarNote();
-          this.drawBarNote(middle, 'Result', '#fff');
+          this.drawBarNote(middle, 'Result', '#00ff00');
           return middle;
         } else if (this.values[middle] < this.value) {
           start = middle + 1;
