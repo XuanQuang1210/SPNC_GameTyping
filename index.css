@@ -50,7 +50,14 @@
   border: 1px solid lightgray;
   border-radius: 4px;
   outline: none;
+}
+
+#control input:nth-child(1) {
   width: 400px;
+}
+
+#control input:nth-child(2) {
+  width: 100px;
 }
 
 #control button {
