@@ -149,13 +149,22 @@ const setupGame = () => {
       return new Promise((resolve) => setTimeout(resolve, ms));
     }
 
+    async highlight(code) {
+      this.game.events.emit('highlight', code);
+      await this.delay(800);
+    }
+
     async findIndex() {
+      await this.highlight(1);
       let start = 0;
       let end = this.values.length - 1;
+
       while (start <= end) {
         this.clearBarNote();
         this.drawBarRange(start, end);
+        await this.highlight(2);
 
+        await this.highlight(3);
         let middle = Math.floor((start + end) / 2);
 
         this.startIndexText?.destroy(true);
@@ -207,20 +216,29 @@ const setupGame = () => {
           }
         );
 
+        await this.highlight(4);
         if (this.values[middle] === this.value) {
+          await this.highlight(5);
           this.clearBarNote();
           this.drawBarNote(middle, 'Result', '#00ff00');
           return middle;
-        } else if (this.values[middle] < this.value) {
-          start = middle + 1;
         } else {
-          end = middle - 1;
+          await this.highlight(6);
+          if (this.values[middle] < this.value) {
+            start = middle + 1;
+            await this.highlight(7);
+          } else {
+            await this.highlight(8);
+            await this.highlight(9);
+            end = middle - 1;
+          }
         }
 
-        await this.delay(2000);
+        await this.delay(1000);
       }
 
       this.clearBarNote();
+      await this.highlight(10);
       return -1;
     }
 
@@ -256,8 +274,12 @@ const setupGame = () => {
   game = new Phaser.Game(config);
 
   // add event listeners
-  game.events.on('start', () => {
-    console.log('start');
+  game.events.on('highlight', (code) => {
+    const lines = document.querySelectorAll('.code');
+    lines.forEach((line) => (line.style.backgroundColor = 'transparent'));
+
+    const codeLines = document.querySelectorAll(`.code-${code}`);
+    codeLines.forEach((line) => (line.style.backgroundColor = 'lightcoral'));
   });
 };
 

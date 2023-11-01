@@ -12,23 +12,33 @@
         <div id="game"></div>
         <div id="code-container">
           <p>function binarySearch(sortedArray, value) {</p>
-          <p style="padding-left: 16px">let start = 0;</p>
-          <p style="padding-left: 16px">let end = sortedArray.length - 1;</p>
-          <p style="padding-left: 16px">while (start <= end) {</p>
-          <p style="padding-left: 32px">
+          <p class="code code-1" style="padding-left: 16px">let start = 0;</p>
+          <p class="code code-1" style="padding-left: 16px">
+            let end = sortedArray.length - 1;
+          </p>
+          <p class="code code-2" style="padding-left: 16px">
+            while (start <= end) {
+          </p>
+          <p class="code code-3" style="padding-left: 32px">
             let middle = Math.floor((start + end) / 2);
           </p>
-          <p style="padding-left: 32px">if (sortedArray[middle] === value) {</p>
-          <p style="padding-left: 48px">return middle;</p>
-          <p style="padding-left: 32px">
+          <p class="code code-4" style="padding-left: 32px">
+            if (sortedArray[middle] === value) {
+          </p>
+          <p class="code code-5" style="padding-left: 48px">return middle;</p>
+          <p class="code code-6" style="padding-left: 32px">
             } else if (sortedArray[middle] < value) {
           </p>
-          <p style="padding-left: 48px">start = middle + 1;</p>
-          <p style="padding-left: 32px">} else {</p>
-          <p style="padding-left: 48px">end = middle - 1;</p>
+          <p class="code code-7" style="padding-left: 48px">
+            start = middle + 1;
+          </p>
+          <p class="code code-8" style="padding-left: 32px">} else {</p>
+          <p class="code code-9" style="padding-left: 48px">
+            end = middle - 1;
+          </p>
           <p style="padding-left: 32px">}</p>
           <p style="padding-left: 16px">}</p>
-          <p style="padding-left: 16px">return -1;</p>
+          <p class="code code-10" style="padding-left: 16px">return -1;</p>
           <p>}</p>
         </div>
       </div>
