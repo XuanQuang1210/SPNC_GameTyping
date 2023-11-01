@@ -10,6 +10,9 @@ const setupGame = () => {
     resultText = null;
     middleValueText = null;
     middleStatusText = null;
+    startIndexText = null;
+    middleIndexText = null;
+    endIndexText = null;
 
     constructor() {
       super('GameScene');
@@ -47,6 +50,15 @@ const setupGame = () => {
 
       this.middleStatusText?.destroy(true);
       this.middleStatusText = null;
+
+      this.startIndexText?.destroy(true);
+      this.startIndexText = null;
+
+      this.middleIndexText?.destroy(true);
+      this.middleIndexText = null;
+
+      this.endIndexText?.destroy(true);
+      this.endIndexText = null;
 
       this.resultText?.destroy(true);
       this.resultText = null;
@@ -145,6 +157,28 @@ const setupGame = () => {
         this.drawBarRange(start, end);
 
         let middle = Math.floor((start + end) / 2);
+
+        this.startIndexText?.destroy(true);
+        this.startIndexText = this.add.text(50, 110, `Start index: ${start}`, {
+          color: '#fff',
+          fontSize: 12,
+        });
+        this.middleIndexText?.destroy(true);
+        this.middleIndexText = this.add.text(
+          50,
+          130,
+          `Middle index: ${middle}`,
+          {
+            color: '#fff',
+            fontSize: 12,
+          }
+        );
+        this.endIndexText?.destroy(true);
+        this.endIndexText = this.add.text(50, 150, `End index: ${end}`, {
+          color: '#fff',
+          fontSize: 12,
+        });
+
         this.drawBarNote(middle, 'Middle', '#00ff00');
         this.middleValueText?.destroy(true);
         this.middleValueText = this.add.text(
