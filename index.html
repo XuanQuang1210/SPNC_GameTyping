@@ -8,56 +8,17 @@
   </head>
   <body>
     <div id="app">
-      <div id="container">
-        <div id="game"></div>
-        <div id="code-container">
-          <p>function binarySearch(sortedArray, value) {</p>
-          <p class="code code-1" style="padding-left: 16px">let start = 0;</p>
-          <p class="code code-1" style="padding-left: 16px">
-            let end = sortedArray.length - 1;
-          </p>
-          <p class="code code-2" style="padding-left: 16px">
-            while (start <= end) {
-          </p>
-          <p class="code code-3" style="padding-left: 32px">
-            let middle = Math.floor((start + end) / 2);
-          </p>
-          <p class="code code-4" style="padding-left: 32px">
-            if (sortedArray[middle] === value) {
-          </p>
-          <p class="code code-5" style="padding-left: 48px">return middle;</p>
-          <p class="code code-6" style="padding-left: 32px">
-            } else if (sortedArray[middle] < value) {
-          </p>
-          <p class="code code-7" style="padding-left: 48px">
-            start = middle + 1;
-          </p>
-          <p class="code code-8" style="padding-left: 32px">} else {</p>
-          <p class="code code-9" style="padding-left: 48px">
-            end = middle - 1;
-          </p>
-          <p style="padding-left: 32px">}</p>
-          <p style="padding-left: 16px">}</p>
-          <p class="code code-10" style="padding-left: 16px">return -1;</p>
-          <p>}</p>
-        </div>
-      </div>
-      <div id="control">
-        <input
-          placeholder="Numbers, splited by commas, min 1, max 100"
-          value="12, 24, 31, 88, 54, 47, 66, 92, 99, 100, 1, 5, 33, 40, 50, 70, 20"
-        />
-        <input placeholder="Value" value="1" />
-        <button>Start</button>
-      </div>
+      <div id="game"></div>
     </div>
     <script
       defer
       src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.60.0/phaser.min.js"
     ></script>
+    <script defer src="./game-configs.js"></script>
+    <script defer src="./button.js"></script>
+    <script defer src="./loading-scene.js"></script>
     <script defer src="./game-scene.js"></script>
     <script defer src="./setup-game.js"></script>
-    <script defer src="./setup-control.js"></script>
     <script defer src="./index.js"></script>
   </body>
 </html>
