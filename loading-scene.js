@@ -22,9 +22,9 @@ class LoadingScene extends Phaser.Scene {
     // add text
     this.gameName = this.add.text(width / 2, 200, 'Ong vàng dạo vườn hoa', {
       fontFamily: 'Arial',
-      color: '#000',
+      color: '#E1BC3A',
       fontSize: 64,
-      fontWeight: 700,
+      fontWeight: 'bold',
     });
     this.gameName.setOrigin(0.5, 0.5);
     this.gameName.align = 'center';
