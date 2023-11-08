@@ -37,7 +37,7 @@ class LoadingScene extends Phaser.Scene {
       textColor: '#000',
       btnColor: 0xf2f494,
       onClick: () => {
-        console.log('Start');
+        this.scene.start('PreLevel1Scene');
       },
       width: 250,
     });
