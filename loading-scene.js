@@ -6,7 +6,6 @@ class LoadingScene extends Phaser.Scene {
   }
 
   preload() {
-    console.log('preload loading scene');
     this.load.image('background', './images/bg.jpeg');
   }
 
@@ -50,7 +49,7 @@ class LoadingScene extends Phaser.Scene {
       textColor: '#000',
       btnColor: 0xf2f494,
       onClick: () => {
-        console.log('Guide');
+        this.scene.start('GuideScene');
       },
       width: 250,
     });

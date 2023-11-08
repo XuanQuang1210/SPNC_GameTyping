@@ -8,7 +8,7 @@ const setupGame = () => {
     fps: {
       target: 60,
     },
-    scene: [LoadingScene, GameScene],
+    scene: [LoadingScene, GuideScene, GameScene],
   };
 
   const game = new Phaser.Game(config);
