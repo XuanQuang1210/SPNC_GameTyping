@@ -7,7 +7,7 @@ class PreLevel2Scene extends Phaser.Scene {
 
   create() {
     // add bg
-    this.background = this.add.image(0, 0, 'background').setOrigin(0, 0);
+    this.background = this.add.image(0, 0, 'bg2').setOrigin(0, 0);
     const scaleX = width / this.background.width;
     const scaleY = height / this.background.height;
     const scale = Math.max(scaleX, scaleY);

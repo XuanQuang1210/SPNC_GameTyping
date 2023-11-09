@@ -7,6 +7,9 @@ class LoadingScene extends Phaser.Scene {
 
   preload() {
     this.load.image('background', './images/bg.jpeg');
+    this.load.image('bg1', './images/bg1.jpeg');
+    this.load.image('bg2', './images/bg2.jpeg');
+    this.load.image('bg3', './images/bg3.jpeg');
   }
 
   create() {
