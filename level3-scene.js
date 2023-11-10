@@ -15,9 +15,9 @@ const characters = Object.values(hands).reduce(
 );
 
 const reduceStep = 2;
-const numberOfQuestions = 2;
+const numberOfQuestions = 20;
 
-class Level1Scene extends Phaser.Scene {
+class Level3Scene extends Phaser.Scene {
   handIndex = null;
   character = null;
   correct = 0;
@@ -27,7 +27,7 @@ class Level1Scene extends Phaser.Scene {
   score = 0;
 
   constructor() {
-    super('Level1Scene');
+    super('Level3Scene');
   }
 
   drawResultModal() {
@@ -165,11 +165,6 @@ class Level1Scene extends Phaser.Scene {
     this.handImage = this.add.image(width / 2, height, url).setOrigin(0.5, 1);
   }
 
-  gameOver() {
-    this.ended = true;
-    this.drawResultModal();
-  }
-
   updateProgressBar() {
     if (this.ended) return;
 
@@ -185,11 +180,7 @@ class Level1Scene extends Phaser.Scene {
     if (this.progressBar.width === 0) {
       this.progressBar.width = 400;
       this.wrong++;
-      if (this.correct + this.wrong < numberOfQuestions) {
-        this.generateCharacter();
-      } else {
-        this.gameOver();
-      }
+      this.generateCharacter();
     } else {
       this.progressBar.width -= reduceStep;
     }
@@ -210,7 +201,8 @@ class Level1Scene extends Phaser.Scene {
 
       this.generateCharacter();
       if (this.correct + this.wrong === numberOfQuestions) {
-        this.gameOver();
+        this.ended = true;
+        this.drawResultModal();
       }
     });
   }
