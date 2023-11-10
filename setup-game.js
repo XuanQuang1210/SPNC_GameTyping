@@ -14,6 +14,7 @@ const setupGame = () => {
       PreLevel1Scene,
       PreLevel2Scene,
       PreLevel3Scene,
+      Level1Scene,
     ],
   };
 
