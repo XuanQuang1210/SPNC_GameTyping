@@ -10,6 +10,7 @@ class LoadingScene extends Phaser.Scene {
     this.load.image('bg1', './images/bg1.jpeg');
     this.load.image('bg2', './images/bg2.jpeg');
     this.load.image('bg3', './images/bg3.jpeg');
+    this.load.image('clock', './images/clock.png');
     this.load.image('hands', '/images/hands.png');
     this.load.image('hands_0', '/images/hands.png');
     this.load.image('hands_1', '/images/hands_1.png');

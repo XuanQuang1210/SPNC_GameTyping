@@ -169,8 +169,9 @@ class Level1Scene extends Phaser.Scene {
     if (this.ended) return;
 
     if (!this.progressBar) {
+      this.clock = this.add.image(20, 20, 'clock').setOrigin(0, 0);
       this.progressBar = this.add
-        .rectangle(20, 20, 400, 30, 0x6666ff)
+        .rectangle(100, 40, 400, 30, 0x6666ff)
         .setOrigin(0, 0);
 
       return;
