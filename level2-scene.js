@@ -171,11 +171,13 @@ class Level2Scene extends Phaser.Scene {
       .setOrigin(0.5, 0.5);
 
     this.drawTexts();
+    this.drawHandImage(wordCharacters[0]);
   }
 
   highlight() {
     if (!this.word) return;
 
+    let activeText = '';
     this.activeCharacters = this.activeCharacters.map(
       (activeCharacter, index) => {
         const text = activeCharacter.text;
@@ -187,6 +189,7 @@ class Level2Scene extends Phaser.Scene {
         let color = '#bbb';
         if (index === this.characterIndex) {
           color = '#000';
+          activeText = text;
         } else if (this.correctCharacterIndexes.includes(index)) {
           color = '#0f0';
         } else if (this.wrongCharacterIndexes.includes(index)) {
@@ -205,12 +208,24 @@ class Level2Scene extends Phaser.Scene {
     );
 
     this.drawTexts();
+    this.drawHandImage(activeText);
   }
 
-  drawHandImage() {
-    this.handImage = this.add
-      .image(width / 2, height, 'hands')
-      .setOrigin(0.5, 1);
+  drawHandImage(character) {
+    if (this.handImage) {
+      this.handImage.destroy(true);
+      this.handImage = null;
+    }
+
+    const handIndex =
+      (character &&
+        Object.keys(hands).find((key) => {
+          return hands[key].includes(character.toUpperCase());
+        })) ||
+      null;
+
+    let url = handIndex !== null ? `hands_${handIndex}` : `hands`;
+    this.handImage = this.add.image(width / 2, height, url).setOrigin(0.5, 1);
   }
 
   gameOver() {

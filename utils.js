@@ -20,3 +20,19 @@ const toLowerCaseNonAccentVietnamese = (str) => {
   str = str.replace(/\u02C6|\u0306|\u031B/g, ''); // Â, Ê, Ă, Ơ, Ư
   return str;
 };
+
+const hands = {
+  0: ['Q', 'A', 'Z'],
+  1: ['W', 'S', 'X'],
+  2: ['E', 'D', 'C'],
+  3: ['R', 'F', 'V', 'T', 'G', 'B'],
+  4: ['Y', 'H', 'N', 'U', 'J', 'M'],
+  5: ['I', 'K'],
+  6: ['O', 'L'],
+  7: ['P'],
+};
+
+const characters = Object.values(hands).reduce(
+  (result, items) => [...result, ...items],
+  []
+);
