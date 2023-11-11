@@ -72,13 +72,13 @@ class LoadingScene extends Phaser.Scene {
     });
 
     // sound
-    this.sound.pauseOnBlur = false;
-    const bgMusic = this.sound.add('bg-music');
-    bgMusic.loop = true;
-    bgMusic.play();
-
-    // events
-    this.game.events.on('start', () => {});
+    if (!window.soundOn) {
+      this.sound.pauseOnBlur = false;
+      const bgMusic = this.sound.add('bg-music');
+      bgMusic.loop = true;
+      bgMusic.play();
+      window.soundOn = true;
+    }
   }
 
   update() {
