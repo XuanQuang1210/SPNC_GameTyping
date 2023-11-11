@@ -79,14 +79,14 @@ class Level1Scene extends Phaser.Scene {
 
   drawTexts() {
     if (!Object.keys(this.texts).length) {
-      this.texts.correctLabel = this.add.text(width - 150, 20, 'Đúng:', {
+      this.texts.correctLabel = this.add.text(width - 200, 20, 'Đúng:', {
         fontSize: 24,
         fontWeight: 700,
         color: '#0f0',
       });
 
       this.texts.correctValue = this.add.text(
-        width - 75,
+        width - 125,
         20,
         `${this.correct}`,
         {
@@ -96,20 +96,20 @@ class Level1Scene extends Phaser.Scene {
         }
       );
 
-      this.texts.wrongLabel = this.add.text(width - 150, 45, 'Sai:', {
+      this.texts.wrongLabel = this.add.text(width - 200, 45, 'Sai:', {
         fontSize: 24,
         fontWeight: 700,
         color: '#f00',
       });
 
-      this.texts.wrongValue = this.add.text(width - 85, 45, `${this.wrong}`, {
+      this.texts.wrongValue = this.add.text(width - 135, 45, `${this.wrong}`, {
         fontSize: 24,
         fontWeight: 700,
         color: '#f00',
       });
 
       this.texts.score = this.add.text(
-        width - 150,
+        width - 200,
         70,
         `Score: ${this.score}`,
         {
@@ -188,6 +188,7 @@ class Level1Scene extends Phaser.Scene {
       if (this.correct + this.wrong < numberOfQuestions) {
         this.generateCharacter();
       } else {
+        this.drawTexts();
         this.gameOver();
       }
     } else {

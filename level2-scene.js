@@ -1,4 +1,4 @@
-const words = ['bigbang', 'maga', 'justdoit'];
+const words = ['bigbanghello', 'maga', 'justdoit'];
 
 const repeatTimes = 4;
 const progressBarSpeed = 1;
@@ -63,14 +63,14 @@ class Level2Scene extends Phaser.Scene {
 
   drawTexts() {
     if (!Object.keys(this.texts).length) {
-      this.texts.correctLabel = this.add.text(width - 150, 20, 'Đúng:', {
+      this.texts.correctLabel = this.add.text(width - 200, 20, 'Đúng:', {
         fontSize: 24,
         fontWeight: 700,
         color: '#0f0',
       });
 
       this.texts.correctValue = this.add.text(
-        width - 75,
+        width - 125,
         20,
         `${this.correct}`,
         {
@@ -80,20 +80,20 @@ class Level2Scene extends Phaser.Scene {
         }
       );
 
-      this.texts.wrongLabel = this.add.text(width - 150, 45, 'Sai:', {
+      this.texts.wrongLabel = this.add.text(width - 200, 45, 'Sai:', {
         fontSize: 24,
         fontWeight: 700,
         color: '#f00',
       });
 
-      this.texts.wrongValue = this.add.text(width - 85, 45, `${this.wrong}`, {
+      this.texts.wrongValue = this.add.text(width - 135, 45, `${this.wrong}`, {
         fontSize: 24,
         fontWeight: 700,
         color: '#f00',
       });
 
       this.texts.score = this.add.text(
-        width - 150,
+        width - 200,
         70,
         `Score: ${this.score}`,
         {
@@ -126,8 +126,8 @@ class Level2Scene extends Phaser.Scene {
 
     const wordCharacters = this.word.split('');
 
-    let y = height / 2 - Math.floor(repeatTimes / 2) * 45;
-    let x = width / 2 - Math.floor(this.word.length / 2) * 40;
+    let y = height / 2 - Math.floor(repeatTimes / 2) * 40;
+    let x = width / 2 - Math.floor(this.word.length / 2) * 35;
     for (let i = 0; i < repeatTimes; i++) {
       wordCharacters.map((character, index) => {
         const characterText = this.add
@@ -139,10 +139,10 @@ class Level2Scene extends Phaser.Scene {
           .setOrigin(0.5, 0.5)
           .setDepth(2);
         this.activeCharacters.push(characterText);
-        x += 45;
+        x += 40;
       });
-      y += 60;
-      x = width / 2 - Math.floor(this.word.length / 2) * 40;
+      y += 45;
+      x = width / 2 - Math.floor(this.word.length / 2) * 35;
     }
 
     if (this.board) {
@@ -154,8 +154,16 @@ class Level2Scene extends Phaser.Scene {
       .rectangle(
         width / 2,
         height / 2,
-        this.activeCharacters.at(-1).x - this.activeCharacters[0].x + 100,
-        this.activeCharacters.at(-1).y - this.activeCharacters[0].y + 100,
+        this.activeCharacters.at(-1).x -
+          this.activeCharacters[0].x +
+          this.activeCharacters[0].width / 2 +
+          this.activeCharacters.at(-1).width / 2 +
+          100,
+        this.activeCharacters.at(-1).y -
+          this.activeCharacters[0].y +
+          this.activeCharacters[0].height / 2 +
+          this.activeCharacters.at(-1).height / 2 +
+          100,
         0xffffff
       )
       .setOrigin(0.5, 0.5);
