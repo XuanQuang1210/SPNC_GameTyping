@@ -262,6 +262,7 @@ class Level2Scene extends Phaser.Scene {
 
   addKeyboardListener() {
     this.input.keyboard.on('keydown', (event) => {
+      this.keyboardSound.play();
       if (this.ended) return;
 
       const now = Date.now();
@@ -286,9 +287,11 @@ class Level2Scene extends Phaser.Scene {
         this.word.length * repeatTimes
       ) {
         if (this.wrongCharacterIndexes.length > 0) {
+          this.wrongSound.play();
           this.wrong++;
           this.score += this.correctCharacterIndexes.length;
         } else {
+          this.correctSound.play();
           this.correct++;
           this.score +=
             this.correctCharacterIndexes.length + this.progressBar?.width
@@ -324,6 +327,11 @@ class Level2Scene extends Phaser.Scene {
     const scale = Math.max(scaleX, scaleY);
     this.background.setScale(scale).setScrollFactor(0);
     this.background.depth = -1;
+
+    // add sounds
+    this.correctSound = this.sound.add('correct-sound');
+    this.wrongSound = this.sound.add('wrong-sound');
+    this.keyboardSound = this.sound.add('keyboard-sound');
 
     this.drawHandImage();
     this.updateProgressBar();

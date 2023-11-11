@@ -314,9 +314,11 @@ class Level3Scene extends Phaser.Scene {
     });
 
     if (valid) {
+      this.correctSound.play();
       this.correct++;
       this.score += Math.floor(this.progressBar.width);
     } else {
+      this.wrongSound.play();
       this.wrong++;
     }
 
@@ -331,6 +333,7 @@ class Level3Scene extends Phaser.Scene {
 
   addKeyboardListener() {
     this.input.keyboard.on('keydown', (event) => {
+      this.keyboardSound.play();
       if (this.ended) return;
       if (
         ![...characters, 'BACKSPACE', ' ', 'ENTER'].includes(
@@ -366,6 +369,11 @@ class Level3Scene extends Phaser.Scene {
     const scale = Math.max(scaleX, scaleY);
     this.background.setScale(scale).setScrollFactor(0);
     this.background.depth = -1;
+
+    // add sounds
+    this.correctSound = this.sound.add('correct-sound');
+    this.wrongSound = this.sound.add('wrong-sound');
+    this.keyboardSound = this.sound.add('keyboard-sound');
 
     // this.drawBoard();
     this.updateProgressBar();

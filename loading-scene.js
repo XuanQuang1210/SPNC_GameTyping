@@ -20,6 +20,10 @@ class LoadingScene extends Phaser.Scene {
     this.load.image('hands_5', '/images/hands_5.png');
     this.load.image('hands_6', '/images/hands_6.png');
     this.load.image('hands_7', '/images/hands_7.png');
+    this.load.audio('bg-music', '/sounds/bg-music.mp3');
+    this.load.audio('correct-sound', '/sounds/correct.mp3');
+    this.load.audio('wrong-sound', '/sounds/wrong.mp3');
+    this.load.audio('keyboard-sound', '/sounds/keyboard.mp3');
   }
 
   create() {
@@ -50,7 +54,7 @@ class LoadingScene extends Phaser.Scene {
       textColor: '#000',
       btnColor: 0xf2f494,
       onClick: () => {
-        this.scene.start('PreLevel2Scene');
+        this.scene.start('PreLevel1Scene');
       },
       width: 250,
     });
@@ -67,6 +71,13 @@ class LoadingScene extends Phaser.Scene {
       width: 250,
     });
 
+    // sound
+    this.sound.pauseOnBlur = false;
+    const bgMusic = this.sound.add('bg-music');
+    bgMusic.loop = true;
+    bgMusic.play();
+
+    // events
     this.game.events.on('start', () => {});
   }
 

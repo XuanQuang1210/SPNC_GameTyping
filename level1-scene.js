@@ -184,15 +184,18 @@ class Level1Scene extends Phaser.Scene {
 
   addKeyboardListener() {
     this.input.keyboard.on('keydown', (event) => {
+      this.keyboardSound.play();
       if (this.ended) return;
 
       if (event.key?.toUpperCase() === this.character) {
         this.correct++;
+        this.correctSound.play();
         this.score += this.progressBar?.width
           ? Math.round(this.progressBar?.width / 10)
           : 0;
       } else {
         this.wrong++;
+        this.wrongSound.play();
       }
 
       this.generateCharacter();
@@ -217,6 +220,11 @@ class Level1Scene extends Phaser.Scene {
     const scale = Math.max(scaleX, scaleY);
     this.background.setScale(scale).setScrollFactor(0);
     this.background.depth = -1;
+
+    // add sounds
+    this.correctSound = this.sound.add('correct-sound');
+    this.wrongSound = this.sound.add('wrong-sound');
+    this.keyboardSound = this.sound.add('keyboard-sound');
 
     this.drawBoard();
     this.updateProgressBar();
