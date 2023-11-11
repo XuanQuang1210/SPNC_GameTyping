@@ -1,7 +1,7 @@
 const words = ['bigbanghello', 'maga', 'justdoit'];
 
 const repeatTimes = 4;
-const progressBarSpeed = 1;
+const progressBarSpeed = 0.5;
 
 class Level2Scene extends Phaser.Scene {
   wordIndex = 0;
@@ -15,6 +15,7 @@ class Level2Scene extends Phaser.Scene {
   texts = {};
   ended = false;
   score = 0;
+  playTime = 0;
 
   constructor() {
     super('Level2Scene');
@@ -35,6 +36,7 @@ class Level2Scene extends Phaser.Scene {
             `Số câu đúng: ${this.correct}`,
             `Số câu sai: ${this.wrong}`,
             `Điểm: ${this.score}`,
+            `Thời gian: ${calculateTime(this.playTime)}`,
           ],
           {
             fontFamily: 'Arial',
@@ -292,6 +294,11 @@ class Level2Scene extends Phaser.Scene {
     });
   }
 
+  updateTime(delta) {
+    if (this.ended) return;
+    this.playTime += delta;
+  }
+
   preload() {}
 
   create() {
@@ -309,7 +316,8 @@ class Level2Scene extends Phaser.Scene {
     this.addKeyboardListener();
   }
 
-  update() {
+  update(_, delta) {
     this.updateProgressBar();
+    this.updateTime(delta);
   }
 }

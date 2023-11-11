@@ -15,7 +15,7 @@ const characters = Object.values(hands).reduce(
 );
 
 const reduceStep = 2;
-const numberOfQuestions = 2;
+const numberOfQuestions = 20;
 
 class Level1Scene extends Phaser.Scene {
   handIndex = null;
@@ -25,6 +25,7 @@ class Level1Scene extends Phaser.Scene {
   texts = {};
   ended = false;
   score = 0;
+  playTime = 0;
 
   constructor() {
     super('Level1Scene');
@@ -45,6 +46,7 @@ class Level1Scene extends Phaser.Scene {
             `Số câu đúng: ${this.correct}`,
             `Số câu sai: ${this.wrong}`,
             `Điểm: ${this.score}`,
+            `Thời gian: ${calculateTime(this.playTime)}`,
           ],
           {
             fontFamily: 'Arial',
@@ -216,6 +218,11 @@ class Level1Scene extends Phaser.Scene {
     });
   }
 
+  updateTime(delta) {
+    if (this.ended) return;
+    this.playTime += delta;
+  }
+
   preload() {}
 
   create() {
@@ -233,7 +240,8 @@ class Level1Scene extends Phaser.Scene {
     this.addKeyboardListener();
   }
 
-  update() {
+  update(_, delta) {
     this.updateProgressBar();
+    this.updateTime(delta);
   }
 }
